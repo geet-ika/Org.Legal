@@ -7,10 +7,9 @@ using Xunit;
 using FluentAssertions;
 using System.Threading.Tasks;
 
-
 namespace Org.Legal.Services.Tests
 {
-    public partial class LegalContactServiceTests
+    public class LegalContactServiceTests
     {
         public Mock<IStorageBroker> storageBrokerMock;
         public ILegalContactService legalContactService;
@@ -39,7 +38,7 @@ namespace Org.Legal.Services.Tests
             LegalContact actualLegalContact = await this.legalContactService.GetMyLegalContact(randomEmployee);
 
             // then
-            actualLegalContact.Should().BeEquivalentTo(expectedEmployee);
+            actualLegalContact.Should().BeEquivalentTo(expectedLegalContact);
 
             this.storageBrokerMock.Verify(broker =>
                 broker.GetLegalContact(randomEmployee.EmployeeID),
